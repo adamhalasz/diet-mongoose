@@ -1,0 +1,38 @@
+{
+  "name": "diet-mongoose",
+  "version": "0.1.0",
+  "description": "A Mongoose plugin for Diet. Elegant mongodb object modeling for node.js",
+  "homepage": "http://github.com/adamhalasz/diet-mongo/",
+  "keywords": [
+  	"mongo",
+  	"mongoose",
+    "mongodb",
+    "database",
+    "nosql",
+    "ODM",
+    "object modeling",
+    "plugin",
+    "diet plugin",
+    "diet",
+    "dietjs",
+    "diet.js"
+  ],
+  "bugs": {
+    "url": "http://github.com/adamhalasz/diet-mongoose/issues",
+    "email": "mail@adamhalasz.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamhalasz/diet-mongoose.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Halász Ádám",
+    "email": "mail@adamhalasz.com",
+    "url": "http://adamhalasz.com/"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.8.21"
+  }
+}

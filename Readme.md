@@ -54,7 +54,7 @@ module.exports = app;
 **blog.js**
 ```js
 // Require Mongoose
-require('mongoose');
+var mongoose = require('mongoose');
 
 // Create a Schema
 var blogSchema = new mongoose.Schema({

@@ -1,6 +1,6 @@
 {
   "name": "diet-mongoose",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Mongoose plugin for Diet. Elegant mongodb object modeling for node.js",
   "homepage": "http://github.com/adamhalasz/diet-mongo/",
   "keywords": [

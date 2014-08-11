@@ -34,13 +34,16 @@ require('diet');
 require('mongoose');
 
 // Create App
-var app = new App('http://localhost:8000/');
+var app = module.app = new App();
+
+// Configure Domain
+app.domain('http://localhost:8000/')
 
 // Plugin Mongoose
 app.plugin('diet-mongoose', { database: 'yourDatabase' });
 
 // Start HTTP Server
-app.start('http://localhost:8000');
+app.start();
 
 // Require Schema
 require('./blog.js');
@@ -77,7 +80,7 @@ module.exports = mongoose.model('Blog', blogSchema);
 **router.js**
 ```js
 // Require App
-var app = require('../');
+var app = module.exports.app;
 
 // Require Blog Model
 var Blog = require('./blog.js');

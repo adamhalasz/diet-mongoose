@@ -20,23 +20,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-exports.onload = function(app, inputOptions){
-	var mongoose = inputOptions.module || require('mongoose');
-	var inputOptions = inputOptions || {};
-	var options = {
-		database : inputOptions.database || 'test',
-		port	 : inputOptions.port 	|| '27017',
-		host	 : inputOptions.host 	|| 'localhost',
-		protocol : inputOptions.protocol || 'mongodb'
-	}
-	
-	mongoose.connect(options.protocol 
-		+ '://'+ options.host 
-		+ ':'  + options.port 
-		+ '/'  + options.database);
-	
-	var db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'connection error:'));
-	db.once('open', app.return);
-	return mongoose;
+var app = module.parent.app;
+var mongoose = inputOptions.module || require('mongoose');
+var inputOptions = module.parent.options || {};
+var options = {
+	database : inputOptions.database || 'test',
+	port	 : inputOptions.port 	|| '27017',
+	host	 : inputOptions.host 	|| 'localhost',
+	protocol : inputOptions.protocol || 'mongodb'
 }
+
+mongoose.connect(options.protocol 
+	+ '://'+ options.host 
+	+ ':'  + options.port 
+	+ '/'  + options.database);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', app);
+
+module.parent.return(mongoose);

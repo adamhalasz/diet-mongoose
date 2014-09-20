@@ -28,36 +28,36 @@ For now as a plugin it makes the setup slightly more simple. It also makes visib
 **index.js**
 ```js
 // Require Diet
-require('diet');
+var server = require('diet')
 
 // Require Mongoose
-require('mongoose');
+require('mongoose')
 
 // Create App
-var app = module.app = new App();
+var app = module.app = new server()
 
 // Configure Domain
 app.domain('http://localhost:8000/')
 
 // Plugin Mongoose
-app.plugin('diet-mongoose', { database: 'yourDatabase' });
+app.plugin('diet-mongoose', { database: 'yourDatabase' })
 
 // Start HTTP Server
-app.start();
+app.start()
 
 // Require Schema
-require('./blog.js');
+require('./blog.js')
 
 // Require Router
-require('./router.js');
+require('./router.js')
 
 // Export App
-module.exports = app;
+module.exports = app
 ```
 **blog.js**
 ```js
 // Require Mongoose
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 // Create a Schema
 var blogSchema = new mongoose.Schema({
@@ -71,53 +71,53 @@ var blogSchema = new mongoose.Schema({
     votes: Number,
     favs:  Number
   }
-});
+})
 
 // Export Model
-module.exports = mongoose.model('Blog', blogSchema);
+module.exports = mongoose.model('Blog', blogSchema)
 ```
 
 **router.js**
 ```js
 // Require App
-var app = module.exports.app;
+var app = module.parent.app
 
 // Require Blog Model
-var Blog = require('./blog.js');
+var Blog = require('./blog.js')
 
 // Show All Posts
 app.get('/', function($){
     Blog.find(function(error, posts){
-        if(error) throw error;
-        $.data.posts = posts;
-        $.json();
+        if(error) throw error
+        $.data.posts = posts
+        $.json()
     })
-});
+})
 
 // Find Post by ID
 app.get('/post/:id', function($){
     Blog.find({ _id: $.params.id }, function(error, post){
-        if(error) throw error;
-        $.data.post = post || false;
-        $.json();
-    });
-});
+        if(error) throw error
+        $.data.post = post || false
+        $.json()
+    })
+})
 
 // Save Post
 app.post('/save', function($){
     Blog.save($.request.body, function(error, post){
-        if(error) throw error;
-        $.redirect('home');
-    });
-});
+        if(error) throw error
+        $.redirect('home')
+    })
+})
 
 // Delete Post by ID
 app.get('/delete/:id', function($){
     Blog.remove({ _id: $.params.id }, function(error){
-        if(error) throw error;
-        $.redirect('home');
-    });
-});
+        if(error) throw error
+        $.redirect('home')
+    })
+})
 ```
 
 ## **Config**
@@ -128,7 +128,7 @@ app.plugin('diet-mongoose', {
 	port	 : '27017',
 	host	 : 'localhost',
 	protocol : 'mongodb'
-});
+})
 ```
 
 # **License**
